@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>헌혈나눔 - 게시글</title>
+<link rel="stylesheet" href="css/style.css">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.117.2/dist/umd/supabase.js" defer></script>
+<script src="js/supabase-config.js" defer></script>
+<script src="js/common.js" defer></script>
+<script src="js/auth.js" defer></script>
+<script src="js/db.js" defer></script>
+<script src="js/post.js" defer></script>
+</head>
+<body data-page="board">
+
+<main class="page">
+  <div class="content">
+
+    <section id="post">
+      <div id="post-gate"></div>
+      <article id="post-box" hidden>
+        <header class="post-head">
+          <span class="badge" id="post-cat"></span>
+          <h2 id="post-title"></h2>
+          <div class="post-meta" id="post-meta"></div>
+        </header>
+        <div class="post-body" id="post-body"></div>
+        <div class="post-actions">
+          <a class="btn btn-outline" href="board.html">목록으로</a>
+          <div class="owner" id="post-owner"></div>
+        </div>
+      </article>
+    </section>
+
+  </div>
+</main>
+
+</body>
+</html>

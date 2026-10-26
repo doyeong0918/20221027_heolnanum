@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>헌혈나눔 - 게시판</title>
+<link rel="stylesheet" href="css/style.css">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.117.2/dist/umd/supabase.js" defer></script>
+<script src="js/supabase-config.js" defer></script>
+<script src="js/common.js" defer></script>
+<script src="js/auth.js" defer></script>
+<script src="js/db.js" defer></script>
+<script src="js/board.js" defer></script>
+</head>
+<body data-page="board">
+
+<main class="page">
+  <div class="content">
+
+    <section id="list">
+      <div class="board-toolbar">
+        <nav class="chips" id="board-cats" aria-label="분류"></nav>
+        <a class="btn" href="write.html">글쓰기</a>
+      </div>
+      <form class="board-search" method="get" action="board.html" role="search">
+        <input type="hidden" name="cat" id="bs-cat">
+        <input type="search" name="q" id="bs-q" maxlength="40" placeholder="제목·내용으로 검색" aria-label="검색어">
+        <button type="submit" class="btn btn-outline">검색</button>
+      </form>
+      <div class="board-count" id="board-count" aria-live="polite"></div>
+      <ul class="board-list" id="board-list"></ul>
+      <nav class="pager" id="board-pager" aria-label="페이지"></nav>
+    </section>
+
+  </div>
+</main>
+
+</body>
+</html>

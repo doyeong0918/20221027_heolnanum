@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>헌혈나눔 - 지도</title>
+<link rel="stylesheet" href="css/style.css">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.117.2/dist/umd/supabase.js" defer></script>
+<script src="js/supabase-config.js" defer></script>
+<script src="js/common.js" defer></script>
+<script src="js/auth.js" defer></script>
+<script src="js/map.js" defer></script>
+</head>
+<body data-page="map">
+
+<main class="page">
+  <div class="content">
+    <section id="find">
+      <h2>헌혈의집 찾기</h2>
+
+      <form class="map-search" id="map-search-form">
+        <input type="text" id="map-search-input" placeholder="지역·역 이름 (예: 수원역)" autocomplete="off">
+        <button type="submit" class="btn">검색</button>
+        <button type="button" id="map-near-btn" class="btn btn-outline">내 주변</button>
+      </form>
+
+      <div class="chips" id="map-chips" aria-label="지역 바로가기"></div>
+
+      <div class="map-frame">
+        <iframe id="map-iframe" title="헌혈의집 지도" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+
+      <p class="map-location">검색 중: <span id="map-location-text"></span></p>
+      <p class="hint">운영 시간과 휴무일은 방문 전에 <a href="https://www.bloodinfo.net" target="_blank" rel="noopener">혈액정보</a>에서 확인하세요.</p>
+    </section>
+  </div>
+</main>
+
+</body>
+</html>

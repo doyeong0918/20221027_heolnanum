@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>헌혈나눔 - 홈</title>
+<link rel="stylesheet" href="css/style.css">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.117.2/dist/umd/supabase.js" defer></script>
+<script src="js/supabase-config.js" defer></script>
+<script src="js/common.js" defer></script>
+<script src="js/auth.js" defer></script>
+<script src="js/db.js" defer></script>
+<script src="js/data.js" defer></script>
+<script src="js/mouseevent.js" defer></script>
+<script src="js/home.js" defer></script>
+</head>
+<body data-page="home">
+
+<main class="page">
+  <div class="content">
+
+    <!-- 슬라이드 배너 -->
+    <section class="bare">
+      <div class="hero-carousel" role="region" aria-roledescription="carousel" aria-label="주요 안내">
+        <div class="slides" id="slides">
+          <article class="slide slide-red is-active" aria-roledescription="slide">
+            <div class="slide-text">
+              <span class="slide-tag">헌혈증 기부 매칭</span>
+              <h1>헌혈증, 필요한 곳으로<br>이어드려요</h1>
+              <p>쓰지 않는 헌혈증을 지역·긴급도 기준으로 도움이 필요한 분께 나눠요.</p>
+              <a class="btn btn-light" href="match.html#requests">기부 요청 보러가기</a>
+            </div>
+            <div class="slide-art" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24"><use href="#i-heart"></use></svg></div>
+          </article>
+          <article class="slide slide-cream" aria-roledescription="slide">
+            <div class="slide-text">
+              <span class="slide-tag">내 헌혈</span>
+              <h1>다음 헌혈 가능일,<br>잊지 마세요</h1>
+              <p>헌혈한 날을 기록하면 다음 가능일을 계산하고 캘린더에 담아 드려요.</p>
+              <a class="btn btn-cream" href="record.html#add">헌혈 기록하기</a>
+            </div>
+            <div class="slide-art" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24"><use href="#i-calendar"></use></svg></div>
+          </article>
+          <article class="slide slide-navy" aria-roledescription="slide">
+            <div class="slide-text">
+              <span class="slide-tag">혈액 현황</span>
+              <h1>오늘 부족한 혈액형은<br>무엇일까요?</h1>
+              <p>혈액형별 보유량을 확인하고, 가까운 헌혈의집을 지도에서 찾아보세요.</p>
+              <a class="btn btn-light" href="status.html">현황 보기</a>
+            </div>
+            <div class="slide-art" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24"><use href="#i-drop"></use></svg></div>
+          </article>
+        </div>
+        <div class="carousel-ctrl">
+          <span id="slide-count" aria-live="off"><b>01</b> / 03</span>
+          <button type="button" id="slide-prev" aria-label="이전 배너">◀</button>
+          <button type="button" id="slide-pause" aria-label="배너 자동 넘김 멈춤">❚❚</button>
+          <button type="button" id="slide-next" aria-label="다음 배너">▶</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 빠른 메뉴 -->
+    <section class="bare">
+      <nav class="quick-menu" aria-label="빠른 메뉴">
+        <a class="quick-item" href="match.html#requests"><span class="quick-icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-heart"></use></svg></span>기부 요청 보기</a>
+        <a class="quick-item" href="match.html#request-form"><span class="quick-icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-edit"></use></svg></span>도움 요청하기</a>
+        <a class="quick-item" href="record.html#add"><span class="quick-icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-calendar"></use></svg></span>헌혈 기록</a>
+        <a class="quick-item" href="record.html#next"><span class="quick-icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-clock"></use></svg></span>다음 가능일</a>
+        <a class="quick-item" href="status.html"><span class="quick-icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-chart"></use></svg></span>혈액 현황</a>
+        <a class="quick-item" href="map.html"><span class="quick-icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-pin"></use></svg></span>헌혈의집 찾기</a>
+        <a class="quick-item" href="info.html"><span class="quick-icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-book"></use></svg></span>헌혈 정보</a>
+        <a class="quick-item" href="info.html#faq"><span class="quick-icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-help"></use></svg></span>자주 묻는 질문</a>
+      </nav>
+    </section>
+
+    <section id="about">
+      <h2>헌혈나눔은 이런 곳이에요</h2>
+      <p class="lead" style="margin-bottom:1.3rem">헌혈증을 나누고 싶은 사람과 필요한 사람을 잇고, 헌혈하는 사람이 다음 헌혈 시기와 혈액 현황을 놓치지 않도록 돕는 서비스예요.</p>
+      <div class="stat-band">
+        <div><div class="num" id="hs-open">-</div><div class="lbl">진행 중인 요청 <span class="sample-tag">예시</span></div></div>
+        <div><div class="num" id="hs-got">-</div><div class="lbl">모인 헌혈증(장) <span class="sample-tag">예시</span></div></div>
+        <div><div class="num" id="hs-done">-</div><div class="lbl">목표 달성 요청 <span class="sample-tag">예시</span></div></div>
+      </div>
+    </section>
+
+    <section id="urgent">
+      <div class="sec-head">
+        <h2>긴급 기부 요청 <span class="sample-tag">예시</span></h2>
+        <a class="more-link" href="match.html#requests">전체 보기 +</a>
+      </div>
+      <div id="urgent-list" class="req-list"></div>
+    </section>
+
+    <section id="stockdash">
+      <div class="sec-head">
+        <h2>오늘의 혈액 보유 <span class="sample-tag">예시</span></h2>
+        <a class="more-link" href="status.html">자세히 보기 +</a>
+      </div>
+      <div id="stock-dash" class="dash"></div>
+    </section>
+
+    <section id="how">
+      <h2>이용 방법</h2>
+      <ol class="steps">
+        <li><strong>헌혈하고 기록하기</strong><a href="record.html">내 헌혈</a>에 헌혈한 날을 남기면 다음 가능일을 알려 드려요.</li>
+        <li><strong>필요한 곳에 나누기</strong><a href="match.html">기부 매칭</a>에서 도움이 필요한 요청을 찾아 기부 약속을 남겨요.</li>
+        <li><strong>다시 헌혈하러 가기</strong>가능일이 되면 <a href="status.html">부족한 혈액형</a>을 확인하고 <a href="map.html">가까운 헌혈의집</a>으로 가요.</li>
+      </ol>
+    </section>
+
+    <section id="notices">
+      <h2>새소식 <span class="sample-tag">예시</span></h2>
+      <ul class="notice-list" id="notice-list"></ul>
+    </section>
+
+    <section id="links" class="ref-links">
+      <h2>참조링크</h2>
+      <div class="link-grid">
+        <a class="link-box" data-brand="youtube" aria-label="YouTube" href="https://www.youtube.com/" target="_blank" rel="noopener">YouTube</a>
+        <a class="link-box" data-brand="instagram" aria-label="Instagram" href="https://www.instagram.com/" target="_blank" rel="noopener">Instagram</a>
+        <a class="link-box" data-brand="github" aria-label="GitHub" href="https://github.com/doyeong0918" target="_blank" rel="noopener">GitHub</a>
+        <a class="link-box" data-brand="gmail" aria-label="Email" href="https://mail.google.com/" target="_blank" rel="noopener">Email</a>
+      </div>
+      <h3 style="margin:1.6rem 0 0.8rem">헌혈 관련 사이트</h3>
+      <div class="ref-site-list">
+        <a class="ref-site-card" href="https://www.bloodinfo.net" target="_blank" rel="noopener">
+          <div class="ref-site-name">혈액정보 (대한적십자사 혈액관리본부)</div>
+          <div class="ref-site-desc">실시간 혈액 보유 현황, 헌혈의집 위치, 헌혈 자격 안내를 확인할 수 있는 공식 사이트.</div>
+        </a>
+        <a class="ref-site-card" href="https://www.kclf.org" target="_blank" rel="noopener">
+          <div class="ref-site-name">한국백혈병어린이재단</div>
+          <div class="ref-site-desc">소아암 어린이를 위한 헌혈증 기증을 받고 지원하는 단체.</div>
+        </a>
+        <a class="ref-site-card" href="https://childhoodcancer.or.kr" target="_blank" rel="noopener">
+          <div class="ref-site-name">한국백혈병소아암협회</div>
+          <div class="ref-site-desc">백혈병·소아암 환아와 가족을 지원하며 헌혈증 기부도 받는 단체.</div>
+        </a>
+        <a class="ref-site-card" href="https://www.redcross.or.kr" target="_blank" rel="noopener">
+          <div class="ref-site-name">대한적십자사</div>
+          <div class="ref-site-desc">헌혈과 헌혈증 관련 공식 안내를 제공하는 대한적십자사 누리집.</div>
+        </a>
+      </div>
+    </section>
+
+  </div>
+</main>
+
+</body>
+</html>

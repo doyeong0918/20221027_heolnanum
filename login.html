@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>헌혈나눔 - 로그인</title>
+<link rel="stylesheet" href="css/style.css">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.117.2/dist/umd/supabase.js" defer></script>
+<script src="js/supabase-config.js" defer></script>
+<script src="js/common.js" defer></script>
+<script src="js/auth.js" defer></script>
+<script src="js/login.js" defer></script>
+</head>
+<body data-page="login">
+
+<main class="page">
+  <div class="content">
+
+    <section class="auth-section">
+      <h2>로그인</h2>
+      <form id="login-form" novalidate>
+        <div class="form-grid one-col">
+          <div class="field">
+            <label for="lg-email">이메일</label>
+            <input id="lg-email" type="email" autocomplete="username" placeholder="example@email.com">
+          </div>
+          <div class="field">
+            <label for="lg-pw">비밀번호</label>
+            <input id="lg-pw" type="password" autocomplete="current-password">
+          </div>
+        </div>
+        <div class="form-actions"><button type="submit" class="btn" id="lg-submit">로그인</button></div>
+        <p id="lg-msg" class="form-msg error" role="alert"></p>
+      </form>
+      <p class="auth-switch">아직 계정이 없나요? <a href="signup.html">회원가입</a></p>
+    </section>
+
+  </div>
+</main>
+
+</body>
+</html>

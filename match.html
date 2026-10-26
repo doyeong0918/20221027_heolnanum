@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>헌혈나눔 - 기부 매칭</title>
+<link rel="stylesheet" href="css/style.css">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.117.2/dist/umd/supabase.js" defer></script>
+<script src="js/supabase-config.js" defer></script>
+<script src="js/common.js" defer></script>
+<script src="js/auth.js" defer></script>
+<script src="js/db.js" defer></script>
+<script src="js/data.js" defer></script>
+<script src="js/match.js" defer></script>
+</head>
+<body data-page="match">
+
+<main class="page">
+  <div class="content">
+
+    <section id="guide">
+      <h2>기부 전 확인할 5가지</h2>
+      <p class="lead" style="margin-bottom:1.1rem">헌혈증은 <strong>무상 나눔만</strong> 가능하며, 금전 거래는 허용하지 않아요.</p>
+      <ol class="check-list">
+        <li><div><b>몇 장부터 기부할 수 있나요?</b>수량 제한은 보통 없어요. 다만 기관마다 모아서 보내 달라는 권장 수량이 있을 수 있어요.</div></li>
+        <li><div><b>헌혈 종류와 발급 시기는 상관없나요?</b>전혈·혈장·혈소판 등 종류와 상관없이, 오래된 헌혈증도 기부할 수 있어요.</div></li>
+        <li><div><b>훼손된 헌혈증은 어떻게 하나요?</b>증서번호나 바코드가 손상된 헌혈증은 사용할 수 없으니 제외해 주세요.</div></li>
+        <li><div><b>기부한 증서를 재발급받아도 되나요?</b>안 돼요. 기부한 증서와 같은 증서를 재발급받으면 기부한 쪽이 무효가 되어 쓰이지 못할 수 있어요.</div></li>
+        <li><div><b>보낼 때 무엇을 적나요?</b>이름(또는 단체명), 연락처, 헌혈증 수량을 함께 적어야 접수 확인과 기부증서 발급이 쉬워요.</div></li>
+      </ol>
+      <p class="hint">위 내용은 한국백혈병어린이재단의 헌혈증 기증 안내를 참고해 정리한 일반 가이드예요. 기관마다 기준이 다를 수 있으니 실제로 보내기 전에 해당 기관 안내를 확인하세요.</p>
+      <div class="notice" style="margin-top:1rem">
+        <strong>안내</strong> · 아래 요청은 화면 구성을 보여주기 위한 <strong>예시 데이터</strong>예요.
+        실제 서비스에서는 요청 검수(증빙 확인)를 거친 요청만 공개할 예정이에요.
+      </div>
+    </section>
+
+    <section id="requests">
+      <h2>기부 요청 목록</h2>
+      <div class="filters">
+        <select id="filter-region" aria-label="지역"><option value="">전체 지역</option></select>
+        <select id="filter-urgency" aria-label="긴급도">
+          <option value="">전체 긴급도</option>
+          <option value="high">긴급만</option>
+          <option value="normal">일반만</option>
+        </select>
+        <select id="filter-sort" aria-label="정렬">
+          <option value="urgent">긴급 우선</option>
+          <option value="recent">최신순</option>
+          <option value="remain">남은 장수 적은 순</option>
+        </select>
+      </div>
+      <div id="request-list" class="req-list"></div>
+      <p id="match-msg" class="form-msg" role="status" aria-live="polite"></p>
+    </section>
+
+    <section id="my-pledges">
+      <h2>내 기부 약속</h2>
+      <ul id="pledge-list" class="simple-list"></ul>
+    </section>
+
+    <section id="request-form">
+      <h2>도움 요청하기</h2>
+      <p class="lead" style="margin-bottom:1rem">헌혈증이 필요하다면 요청을 남겨 주세요. 접수된 요청은 <strong>검수 후</strong> 목록에 공개돼요. 병원·환자의 실명 등 개인정보는 적지 마세요.</p>
+      <div id="req-gate"></div>
+      <form id="req-form" class="card" novalidate>
+        <div class="form-grid">
+          <div class="field">
+            <label for="rf-alias">표시 이름 (가명 가능)</label>
+            <input id="rf-alias" type="text" maxlength="20" placeholder="예: 30대 직장인 가족">
+          </div>
+          <div class="field">
+            <label for="rf-region">지역</label>
+            <select id="rf-region"></select>
+          </div>
+          <div class="field">
+            <label for="rf-reason">사유</label>
+            <select id="rf-reason">
+              <option>수술</option>
+              <option>항암·장기 치료</option>
+              <option>응급·사고</option>
+              <option>기타</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="rf-need">필요한 헌혈증 (장)</label>
+            <input id="rf-need" type="number" min="1" max="100" value="5">
+          </div>
+          <div class="field full">
+            <label for="rf-story">사연 (선택)</label>
+            <textarea id="rf-story" maxlength="300" placeholder="상황을 간단히 적어 주세요 (개인정보 제외)"></textarea>
+          </div>
+        </div>
+        <div class="form-actions"><button type="submit" class="btn">요청 접수하기</button></div>
+        <p id="rf-msg" class="form-msg" role="status" aria-live="polite"></p>
+      </form>
+      <h3 style="margin:1.4rem 0 0.6rem">내가 접수한 요청</h3>
+      <ul id="myreq-list" class="simple-list"></ul>
+    </section>
+
+  </div>
+</main>
+
+<dialog id="donate-dialog">
+  <form id="donate-form" novalidate>
+    <h3>헌혈증 기부하기</h3>
+    <p class="hint" id="donate-target"></p>
+    <div class="form-grid">
+      <div class="field">
+        <label for="df-nick">닉네임</label>
+        <input id="df-nick" type="text" maxlength="12" placeholder="예: 정기헌혈러">
+      </div>
+      <div class="field">
+        <label for="df-count">기부 장수</label>
+        <input id="df-count" type="number" min="1" value="1">
+      </div>
+      <div class="field full">
+        <label for="df-msg">응원 한마디 (선택)</label>
+        <input id="df-msg" type="text" maxlength="60" placeholder="힘내세요!">
+      </div>
+    </div>
+    <p id="df-error" class="form-msg error" role="alert"></p>
+    <div class="form-actions">
+      <button type="submit" class="btn">기부 약속하기</button>
+      <button type="button" class="btn btn-outline" id="donate-cancel">취소</button>
+    </div>
+  </form>
+</dialog>
+
+</body>
+</html>

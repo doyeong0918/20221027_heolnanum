@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>헌혈나눔 - 헌혈 정보</title>
+<link rel="stylesheet" href="css/style.css">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.117.2/dist/umd/supabase.js" defer></script>
+<script src="js/supabase-config.js" defer></script>
+<script src="js/common.js" defer></script>
+<script src="js/auth.js" defer></script>
+</head>
+<body data-page="info">
+
+<main class="page">
+  <div class="content">
+
+    <section id="types">
+      <h2>헌혈 종류와 간격</h2>
+      <div class="type-grid">
+        <div class="card type-card">
+          <div class="tc-title">전혈</div>
+          <div class="tc-gap">8주</div>
+          <p class="tc-desc">혈액 전체를 채혈하는 가장 일반적인 헌혈. 다음 전혈까지 8주(56일) 간격을 둬요.</p>
+        </div>
+        <div class="card type-card">
+          <div class="tc-title">혈장성분</div>
+          <div class="tc-gap">2주</div>
+          <p class="tc-desc">혈장만 분리해 채혈하는 성분헌혈. 2주(14일) 간격으로 가능해요.</p>
+        </div>
+        <div class="card type-card">
+          <div class="tc-title">혈소판성분</div>
+          <div class="tc-gap">2주</div>
+          <p class="tc-desc">혈소판만 분리해 채혈하는 성분헌혈. 2주(14일) 간격으로 가능해요.</p>
+        </div>
+      </div>
+      <p class="hint">간격과 자격(연령·체중·건강 상태)은 바뀔 수 있고 개인별로 달라요. 정확한 기준은 <a href="https://www.bloodinfo.net" target="_blank" rel="noopener">혈액정보</a>나 헌혈의집에서 확인하세요.</p>
+    </section>
+
+    <section id="tips">
+      <h2>헌혈 전후 팁</h2>
+      <dl class="info-rows">
+        <div class="info-row">
+          <dt>헌혈 전</dt>
+          <dd><ul>
+            <li>전날 충분히 자고, 당일 식사를 거르지 마세요.</li>
+            <li>물이나 음료를 충분히 마셔요.</li>
+            <li>신분증을 챙겨 가요.</li>
+          </ul></dd>
+        </div>
+        <div class="info-row">
+          <dt>헌혈 후</dt>
+          <dd><ul>
+            <li>잠시 쉬고, 당일 격한 운동이나 음주는 피해요.</li>
+            <li>몸이 좋지 않거나 어지러우면 바로 직원에게 알려요.</li>
+          </ul></dd>
+        </div>
+        <div class="info-row">
+          <dt>헌혈증</dt>
+          <dd><ul>
+            <li>헌혈 후 받은 헌혈증은 증서번호와 바코드가 상하지 않게 보관해요.</li>
+            <li>기부할 계획이라면 <a href="match.html#guide">기부 전 확인할 5가지</a>를 먼저 읽어 보세요.</li>
+          </ul></dd>
+        </div>
+      </dl>
+    </section>
+
+    <section id="faq">
+      <h2>자주 묻는 질문</h2>
+      <details>
+        <summary>헌혈증은 어디에 쓰이나요?</summary>
+        <p>헌혈증은 본인이나 가족이 수혈을 받을 때 혈액 비용을 보전받는 데 쓰여요. 필요하지 않다면 도움이 필요한 사람에게 나눌 수도 있어요. 자세한 사용 조건은 대한적십자사와 병원에 확인하세요.</p>
+      </details>
+      <details>
+        <summary>헌혈 종류나 혈액형에 따라 헌혈증 쓰임이 다른가요?</summary>
+        <p>기부받는 기관 안내에 따르면 헌혈증은 혈액형·헌혈 종류·헌혈량과 관계없이 동일하게 쓰여요. 오래된 헌혈증도 기부할 수 있지만, 증서번호나 바코드가 손상된 증서는 사용할 수 없어요.</p>
+      </details>
+      <details>
+        <summary>헌혈증을 사고팔 수 있나요?</summary>
+        <p>헌혈나눔에서는 헌혈증을 <strong>무상으로만</strong> 나눠요. 금전 거래는 허용하지 않고, 이를 요구하는 요청은 신고 대상이에요.</p>
+      </details>
+      <details>
+        <summary>헌혈 가능일은 어떻게 계산하나요?</summary>
+        <p><a href="record.html">내 헌혈</a>에 헌혈한 날짜를 기록하면 전혈은 8주, 성분헌혈은 2주 뒤를 가능일로 보여줘요. 종류를 바꿔 헌혈하는 경우의 간격은 헌혈의집에서 확인해야 해요.</p>
+      </details>
+      <details>
+        <summary>내 기록은 어디에 저장되나요?</summary>
+        <p>로그인한 내 계정에 저장돼요. 다른 기기나 브라우저에서도 같은 계정으로 로그인하면 그대로 볼 수 있어요.</p>
+      </details>
+    </section>
+
+  </div>
+</main>
+
+</body>
+</html>

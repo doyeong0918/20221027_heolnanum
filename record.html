@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>헌혈나눔 - 내 헌혈</title>
+<link rel="stylesheet" href="css/style.css">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.117.2/dist/umd/supabase.js" defer></script>
+<script src="js/supabase-config.js" defer></script>
+<script src="js/common.js" defer></script>
+<script src="js/auth.js" defer></script>
+<script src="js/db.js" defer></script>
+<script src="js/record.js" defer></script>
+</head>
+<body data-page="record">
+
+<main class="page">
+  <div class="content">
+
+    <div id="auth-gate"></div>
+
+    <section id="next">
+      <h2>다음 헌혈 가능일</h2>
+      <div id="next-grid" class="next-grid"></div>
+      <div class="stats card">
+        <div class="stat"><div class="num" id="stat-total">0</div><div class="lbl">총 헌혈 횟수</div></div>
+        <div class="stat"><div class="num" id="stat-year">0</div><div class="lbl">올해 횟수</div></div>
+        <div class="stat"><div class="num" id="stat-last">-</div><div class="lbl">마지막 헌혈일</div></div>
+      </div>
+      <p class="hint">전혈은 8주(56일), 성분헌혈(혈장·혈소판)은 2주(14일) 간격으로 계산한 간이 값이에요. 헌혈 종류를 바꿔 하는 경우의 간격과 개인 상태에 따른 가능 여부는 헌혈의집에서 확인하세요.</p>
+    </section>
+
+    <section id="add">
+      <h2>헌혈 기록 추가</h2>
+      <form id="record-form" class="card" novalidate>
+        <div class="form-grid">
+          <div class="field">
+            <label for="rec-date">헌혈 날짜</label>
+            <input id="rec-date" type="date">
+          </div>
+          <div class="field">
+            <label for="rec-type">헌혈 종류</label>
+            <select id="rec-type">
+              <option value="whole">전혈</option>
+              <option value="plasma">혈장성분</option>
+              <option value="platelet">혈소판성분</option>
+            </select>
+          </div>
+          <div class="field full">
+            <label for="rec-place">헌혈 장소 (선택)</label>
+            <input id="rec-place" type="text" maxlength="30" placeholder="예: 수원역 헌혈의집">
+          </div>
+        </div>
+        <div class="form-actions"><button type="submit" class="btn">기록 추가</button></div>
+        <p id="rec-msg" class="form-msg" role="status" aria-live="polite"></p>
+      </form>
+    </section>
+
+    <section id="history">
+      <h2>헌혈 기록 목록</h2>
+      <ul id="record-list" class="simple-list"></ul>
+    </section>
+
+  </div>
+</main>
+
+</body>
+</html>

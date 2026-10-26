@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>헌혈나눔 - 글쓰기</title>
+<link rel="stylesheet" href="css/style.css">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.117.2/dist/umd/supabase.js" defer></script>
+<script src="js/supabase-config.js" defer></script>
+<script src="js/common.js" defer></script>
+<script src="js/auth.js" defer></script>
+<script src="js/db.js" defer></script>
+<script src="js/write.js" defer></script>
+</head>
+<body data-page="board">
+
+<main class="page">
+  <div class="content">
+
+    <section id="write">
+      <h2 id="write-heading">글쓰기</h2>
+      <div id="write-gate"></div>
+      <form id="write-form" novalidate>
+        <div class="form-grid">
+          <div class="field full">
+            <label for="wf-cat">분류</label>
+            <select id="wf-cat"></select>
+          </div>
+          <div class="field full">
+            <label for="wf-title">제목 (100자 이내)</label>
+            <input id="wf-title" type="text" maxlength="100">
+          </div>
+          <div class="field full">
+            <label for="wf-content">내용 (5000자 이내)</label>
+            <textarea id="wf-content" maxlength="5000" rows="12"></textarea>
+          </div>
+        </div>
+        <p class="hint">병원·환자의 실명, 연락처 등 개인정보는 적지 마세요.</p>
+        <div class="form-actions">
+          <button type="submit" class="btn" id="wf-submit">등록</button>
+          <a class="btn btn-outline" href="board.html">취소</a>
+        </div>
+        <p id="wf-msg" class="form-msg error" role="alert"></p>
+      </form>
+    </section>
+
+  </div>
+</main>
+
+</body>
+</html>
